@@ -1,25 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>phil</title>
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    background: #000;
-  }
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "SFMono-Regular", Menlo, Consolas, "Courier New", monospace;
-    color: #fff;
-    font-size: clamp(3rem, 18vw, 12rem);
-    letter-spacing: 0.1em;
-  }
-</style>
-</head>
-<body>phil</body>
-</html>
+---
+layout: default
+---
+{% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in years %}
+  <h2 class="year">{{ year.name }}</h2>
+  <ul class="posts">
+    {% for post in year.items %}
+      <li>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %b" }}</time>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
+{% if site.posts.size == 0 %}
+  <p>No posts yet.</p>
+{% endif %}

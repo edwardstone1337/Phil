@@ -1,0 +1,15 @@
+title: phil
+description: A blog.
+author: Phil
+
+# IMPORTANT: this is "/Phil" because the site currently lives at
+# edwardstone1337.github.io/Phil/. When the custom domain goes live
+# and the site serves from the domain root, change this to: baseurl: ""
+baseurl: "/Phil"
+
+permalink: /:year/:month/:day/:title/
+
+# The full-size source logo stays in the repo but isn't published.
+exclude:
+  - logo.png
+  - README.md

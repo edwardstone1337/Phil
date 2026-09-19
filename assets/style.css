@@ -1,0 +1,192 @@
+/* phil — black, basic, readable.
+   Body text is serif for long-form reading; headings, dates and the
+   wordmark are monospace to keep the terminal feel. */
+
+:root {
+  --bg:      #000;
+  --fg:      #e6e6e6;  /* off-white: 17:1 on black, avoids pure-white glare */
+  --dim:     #9a9a9a;  /* meta text: 7.4:1, passes AA comfortably */
+  --link:    #8ecdf5;
+  --visited: #c9a7ff;
+  --rule:    #333;
+  --focus:   #ffd479;
+  --mono:  ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+  --serif: Georgia, "Times New Roman", Times, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  max-width: 40rem;          /* ~66 characters per line */
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+::selection { background: #fff; color: #000; }
+
+/* --- links ------------------------------------------------------- */
+
+a          { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:visited  { color: var(--visited); }
+a:hover    { color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  position: fixed;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 10;
+  background: #fff;
+  color: #000;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 1rem;
+}
+
+/* --- masthead ---------------------------------------------------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.wordmark {
+  font-family: var(--mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none;
+}
+.wordmark:visited { color: #fff; }
+.wordmark:hover   { color: var(--link); }
+
+.masthead img {
+  display: block;
+  width: 130px;
+  height: auto;
+}
+
+/* --- headings ---------------------------------------------------- */
+
+h1, h2, h3 {
+  font-family: var(--mono);
+  color: #fff;
+  line-height: 1.25;
+  text-wrap: pretty;
+}
+h1 { font-size: 1.75rem; margin: 0 0 0.35rem; }
+h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1.05rem; margin: 2rem 0 0.5rem; }
+
+/* --- post list --------------------------------------------------- */
+
+.year {
+  font-size: 1rem;
+  color: var(--dim);
+  font-weight: 400;
+  margin: 2.5rem 0 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+.year:first-of-type { margin-top: 0; }
+
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  padding: 0.45rem 0;
+}
+.posts time {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--dim);
+  line-height: 1.75;
+}
+
+/* --- post -------------------------------------------------------- */
+
+.meta {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--dim);
+  margin: 0 0 2.5rem;
+}
+
+article p,
+article ul,
+article ol,
+article blockquote,
+article pre { margin: 0 0 1.25rem; }
+
+article ul, article ol { padding-left: 1.5rem; }
+article li { margin-bottom: 0.35rem; }
+
+article img { max-width: 100%; height: auto; }
+
+blockquote {
+  padding-left: 1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--dim);
+}
+
+pre {
+  background: #111;
+  border: 1px solid var(--rule);
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+code { font-family: var(--mono); font-size: 0.9em; }
+pre code { font-size: 1em; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 3rem 0 1.5rem;
+}
+
+.back { font-family: var(--mono); font-size: 0.95rem; margin: 3rem 0 0; }
+
+/* --- footer ------------------------------------------------------ */
+
+footer {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+footer a { color: var(--dim); }
+
+/* --- small screens ----------------------------------------------- */
+
+@media (max-width: 30rem) {
+  body { font-size: 1.0625rem; padding-top: 1.5rem; }
+  .wordmark { font-size: 2rem; }
+  .masthead img { width: 96px; }
+  h1 { font-size: 1.5rem; }
+}

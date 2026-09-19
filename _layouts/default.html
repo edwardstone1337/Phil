@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <a class="wordmark" href="{{ '/' | relative_url }}">phil</a>
+  <img src="{{ '/assets/logo.png' | relative_url }}" width="320" height="145" alt="P.T.B. Horn">
+</header>
+
+<main id="main">
+{{ content }}
+</main>
+
+<footer>
+<hr>
+<p>{{ site.title }} · <a href="{{ '/' | relative_url }}">home</a></p>
+</footer>
+
+</body>
+</html>
